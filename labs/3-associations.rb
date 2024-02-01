@@ -14,8 +14,22 @@ Activity.destroy_all
 #   activity data in the database.  Afterwards, display a
 #   single salesperson's activity data:
 
+
+puts "Activities: #{Activity.all.count}"
+
+
 # 1. insert 3 rows in the activities table with relationships to
 # a single salesperson and 2 different contacts
+
+sue = Salesperson.find_by({"first_name"} => "Sue", "last_name" => "Choi")
+activity = Activity.new
+activity["salesperson_id"] = 
+
+
+t.integer "salesperson_id" # foreign key to a salesperson
+t.integer "contact_id" # foreign key to a contact
+t.string "notes"
+
 
 # 2. Display all the activities between the salesperson used above
 # and one of the contacts (sample output below):
@@ -24,6 +38,8 @@ Activity.destroy_all
 # Activities between Ben and Tim Cook:
 # - quick checkin over facetime
 # - met at Cupertino
+
+
 
 # CHALLENGE:
 # 3. Similar to above, but display all of the activities for the salesperson
