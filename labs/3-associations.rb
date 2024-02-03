@@ -21,18 +21,61 @@ puts "Activities: #{Activity.all.count}"
 # 1. insert 3 rows in the activities table with relationships to
 # a single salesperson and 2 different contacts
 
-sue = Salesperson.find_by({"first_name"} => "Sue", "last_name" => "Choi")
+# find salesperson
+sue = Salesperson.find_by({"first_name" => "Sue", "last_name" => "Choi"})
+
+# find contact 
+tim = Contact.find_by({"first_name" => "Tim", "last_name" => "Cook"})
+jeff = Contact.find_by({"first_name" => "Jeff", "last_name" => "Bezos"})
+
+# Activity.new1
 activity = Activity.new
-activity["salesperson_id"] = 
+# assign new activity salesperson_id to salesperson
+activity["salesperson_id"] = sue["id"]
+# assign new activity contact_id to contact
+activity["contact_id"] = tim["id"]
+# assign the activity notes
+activity["notes"] = "quick facetime with Tim"
+# save new activity
+activity.save
+
+# Activity.new2
+activity = Activity.new
+# assign new activity salesperson_id to salesperson
+activity["salesperson_id"] = sue["id"]
+# assign new activity contact_id to contact
+activity["contact_id"] = jeff["id"]
+# assign the activity notes
+activity["notes"] = "intro email from Tim"
+# save new activity
+activity.save
+
+# Activity.new3
+activity = Activity.new
+# assign new activity salesperson_id to salesperson
+activity["salesperson_id"] = sue["id"]
+# assign new activity contact_id to contact
+activity["contact_id"] = tim["id"]
+# assign the activity notes
+activity["notes"] = "follow up coffee with Tim"
+# save new activity
+activity.save
 
 
-t.integer "salesperson_id" # foreign key to a salesperson
-t.integer "contact_id" # foreign key to a contact
-t.string "notes"
+
+puts "Activities: #{Activity.all.count}"
+
 
 
 # 2. Display all the activities between the salesperson used above
 # and one of the contacts (sample output below):
+
+puts "Activities between Sue and Tim Cook:"
+activities = Activity.where({"salesperson_id" => sue["id"], "contact_id" => tim["id"]})
+for activity in activities
+    note = activity["notes"]
+    puts "- #{note}"
+end
 
 # ---------------------------------
 # Activities between Ben and Tim Cook:
@@ -44,6 +87,17 @@ t.string "notes"
 # CHALLENGE:
 # 3. Similar to above, but display all of the activities for the salesperson
 # across all contacts (sample output below):
+
+puts "Sue's Activities:"
+
+activities = Activity.where({"salesperson_id" => sue["id"]})
+contacts = Contact.all
+for activity in activities
+    note = activity["notes"]
+    puts "- #{note}"
+end 
+
+
 
 # ---------------------------------
 # Ben's Activities:

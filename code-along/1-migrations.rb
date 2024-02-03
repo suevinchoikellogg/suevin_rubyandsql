@@ -11,14 +11,14 @@
 # - Add model and table for the Company entity in our domain model
 
 # 1. in terminal, generate the model and table for Company
-# rails generate model _____
+### rails generate model _____
 
 # 2. open newly generated files
 
 # 3. in the db/migrate file, add relevant columns matching our domain model
 
 # 4. in terminal, execute the migration file
-# rails db:migrate
+### rails db:migrate
 
 # 5. check the schema to confirm the change
 # pay attention to the SQL in the log
